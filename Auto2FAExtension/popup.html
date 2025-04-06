@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Auto2FA</title>
+    <style>
+        body {
+            width: 300px;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #f5f5f5;
+        }
+        
+        .status-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .status-icon.connected {
+            background-color: #34c759;
+        }
+        
+        .status-icon.disconnected {
+            background-color: #ff3b30;
+        }
+        
+        .status-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #f5f5f5;
+        }
+        
+        .toggle-label {
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+        }
+        
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #007AFF;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(16px);
+        }
+        
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .button:hover {
+            background-color: #0066cc;
+        }
+        
+        .button:active {
+            background-color: #0055b3;
+        }
+        
+        .button-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .error-message {
+            display: none;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #ffebee;
+            color: #c62828;
+            font-size: 14px;
+        }
+        
+        .error-message.visible {
+            display: block;
+        }
+        
+        .mapping-count {
+            font-size: 12px;
+            color: #666;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Auto2FA</h1>
+            <div class="status">
+                <div id="statusIcon" class="status-icon disconnected"></div>
+                <span id="statusText" class="status-text">Disconnected</span>
+            </div>
+        </div>
+        
+        <div id="errorContainer" class="error-message">
+            <span id="errorText"></span>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Settings</h2>
+            <div class="toggle-container">
+                <span class="toggle-label">Auto-submit forms</span>
+                <label class="toggle">
+                    <input type="checkbox" id="autoSubmitToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Account Selection</h2>
+            <button id="selectAccountButton" class="button">
+                <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Select Account
+            </button>
+            <div class="mapping-count">
+                <span id="mappingCount">0 mappings</span>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="popup.js"></script>
+</body>
+</html> 

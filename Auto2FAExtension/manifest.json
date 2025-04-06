@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Auto2FA Helper",
+  "version": "0.2.0",
+  "description": "Autofills credentials and OTP codes, with wildcard domain matching.",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+
+  "permissions": [
+    "storage",
+    "nativeMessaging",
+    "scripting",
+    "activeTab",
+    "windows"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["selector.html", "selector.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "browser_specific_settings": {
+    "safari": {
+      "strict_min_version": "15.0"
+    }
+  }
+} 
