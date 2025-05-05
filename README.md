@@ -20,7 +20,7 @@ Auto2FA is a Safari extension that automatically handles two-factor authenticati
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://github.com/yourusername/Auto2FA/releases) page
+1. Download the latest release from the [Releases](https://github.com/rogu3bear/Auto2FA/releases) page
 2. Install the macOS app
 3. Open Safari Preferences
 4. Enable the Auto2FA extension
