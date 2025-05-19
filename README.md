@@ -54,7 +54,7 @@ Auto2FA is designed to work with any website that uses standard login forms. It 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/Auto2FA.git
+   git clone https://github.com/rogu3bear/Auto2FA.git
    cd Auto2FA
    ```
 
